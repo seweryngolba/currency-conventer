@@ -20,7 +20,28 @@
   </head>
   <body>
     <div class="container">
-      <di class="converter"></di>
+      <div class="converter">
+        <div class="top">
+          <h1>Currency Conventer</h1>
+          <i class="fa-solid fa-money-bill-transfer"></i>
+        </div>
+        <div class="inpt">
+          <input id="money" type="number" placeholder="100" />
+          <select name="currencies" id="currencies">
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="CHF">CHF</option>
+          </select>
+          <button id="btn">
+            <div class="front-side">CONVERT</div>
+            <div class="back-side">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+          </button>
+          <h2 class="equals">=</h2>
+          <h2 class="counted">440 PLN</h2>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

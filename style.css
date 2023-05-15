@@ -6,7 +6,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background: #e9edc9;
+  background: rgb(35, 54, 34);
   height: 100vh;
   width: 100%;
 }
@@ -21,10 +21,65 @@ body {
 }
 
 .converter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
   width: 600px;
-  height: 350px;
-  background: white;
-  border: 2px solid #588157;
+  height: 200px;
+  background: rgb(163, 190, 159);
+  border: 2px solid rgb(88, 129, 87);
   border-radius: 50px;
-  box-shadow: 2px 8px 40px #588157;
+  box-shadow: 2px 8px 40px rgb(88, 129, 87);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+.fa-money-bill-transfer {
+  font-size: 24px;
+}
+
+.inpt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgb(218, 165, 32);
+  border: 2px solid rgb(160, 122, 25);
+}
+
+.front-side {
+  font-size: 8px;
+  font-weight: 700;
+  /* display: none; */
+}
+
+.fa-building-columns {
+  font-size: 26px;
+  color: rgb(160, 122, 25);
+}
+
+#money {
+  width: 150px;
+  height: 30px;
+}
+
+select {
+  height: 30px;
 }
