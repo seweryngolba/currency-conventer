@@ -71,11 +71,9 @@ button {
   height: 50px;
   border-radius: 50%;
   transform-style: preserve-3d;
-  overflow: hidden;
   background: rgb(218, 165, 32);
   border: 2px solid rgb(160, 122, 25);
   cursor: pointer;
-  /* animation: spin 2s 2 linear; */
 }
 
 .front-side,
