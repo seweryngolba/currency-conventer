@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #e9edc9;
+  height: 100vh;
+  width: 100%;
+}
+
+.container {
+  width: 860px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.converter {
+  width: 600px;
+  height: 350px;
+  background: white;
+  border: 2px solid #588157;
+  border-radius: 50px;
+  box-shadow: 2px 8px 40px #588157;
+}
