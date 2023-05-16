@@ -59,6 +59,7 @@ h1 {
 #money {
   width: 150px;
   height: 30px;
+  margin-right: -15px;
 }
 
 select {
@@ -104,6 +105,16 @@ button {
 
 .spin-animation {
   animation: spin 2s linear 2;
+}
+
+.total-amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 50px;
+  margin-left: -30px;
+  /* background: pink; */
 }
 
 @keyframes spin {
