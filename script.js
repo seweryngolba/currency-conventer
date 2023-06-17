@@ -3,34 +3,22 @@ const input = document.querySelector("#money");
 const result = document.querySelector(".counted");
 const btn = document.getElementById("btn");
 
+const apiUrl = "https://api.nbp.pl/api/exchangerates/rates/a/";
+
 let currencyValue;
-const apiUrl = {
-  EUR: "https://api.nbp.pl/api/exchangerates/rates/a/eur/",
-  USD: "https://api.nbp.pl/api/exchangerates/rates/a/usd/",
-  CHF: "https://api.nbp.pl/api/exchangerates/rates/a/chf/",
-};
 
-const selectedCurrency = money.value;
-const url = apiUrl[selectedCurrency];
-fetch(url)
-  .then((response) => response.json())
-  .then((data) => {
-    const currencyList = data.rates;
-    currencyValue = currencyList[0].mid;
-  })
-  .catch((error) => alert(error));
-
-money.addEventListener("change", () => {
-  const selectedCurrency = money.value;
-  const url = apiUrl[selectedCurrency];
+const fetchCurrencyData = (selectedCurrency) => {
+  const url = `${apiUrl}${selectedCurrency}/`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       const currencyList = data.rates;
-      currencyValue = currencyList[0].mid;
+      if (currencyList.length > 0) {
+        currencyValue = currencyList[0].mid;
+      }
     })
     .catch((error) => alert(error));
-});
+};
 
 const calculate = () => {
   const amount = input.value;
@@ -38,10 +26,21 @@ const calculate = () => {
   result.innerHTML = calculatedValue.toFixed(2) + " PLN";
 };
 
-btn.addEventListener("click", () => {
-  btn.classList.add("spin-animation");
-  setTimeout(() => {
-    calculate();
-    btn.classList.remove("spin-animation");
-  }, 2000);
+btn.addEventListener("click", (event) => {
+  event.preventDefault();
+  calculate();
 });
+
+money.addEventListener("change", () => {
+  const selectedCurrency = money.value;
+  fetchCurrencyData(selectedCurrency);
+});
+
+input.addEventListener("input", () => {
+  const amount = parseFloat(input.value);
+  if (isNaN(amount) || amount < 0) {
+    input.value = "";
+  }
+});
+
+fetchCurrencyData(money.value);
