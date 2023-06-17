@@ -12,9 +12,11 @@ const fetchCurrencyData = (selectedCurrency) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      const currencyList = data.rates;
-      if (currencyList.length > 0) {
-        currencyValue = currencyList[0].mid;
+      if (data?.rates?.length > 0 && data.rates[0].mid) {
+        currencyValue = data.rates[0].mid;
+        calculate();
+      } else {
+        alert("Failed to read currency converter");
       }
     })
     .catch((error) => alert(error));
@@ -28,19 +30,18 @@ const calculate = () => {
 
 btn.addEventListener("click", (event) => {
   event.preventDefault();
-  calculate();
-});
-
-money.addEventListener("change", () => {
+  const amount = parseFloat(input.value);
+  if (isNaN(amount) || amount <= 0) {
+    alert("Enter a value greater than 0");
+    return;
+  }
   const selectedCurrency = money.value;
   fetchCurrencyData(selectedCurrency);
 });
 
 input.addEventListener("input", () => {
   const amount = parseFloat(input.value);
-  if (isNaN(amount) || amount < 0) {
+  if (isNaN(amount) || amount <= 0) {
     input.value = "";
   }
 });
-
-fetchCurrencyData(money.value);
