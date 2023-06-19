@@ -29,16 +29,16 @@
           <input
             id="money"
             class="amount-input"
-            type="number"
+            type="text"
             placeholder="100"
             min="0"
           />
-          <select name="currencies" id="currencies">
+          <select name="currencies" id="currencies" class="currency-options">
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>
             <option value="CHF">CHF</option>
           </select>
-          <button id="btn" class="convert-button">CONVERT</button>
+          <button id="btn" class="convert-button" type="submit">CONVERT</button>
           <div class="equal-sign">=</div>
           <div class="total-amount"><output class="counted"></output></div>
         </div>

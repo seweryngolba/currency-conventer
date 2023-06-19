@@ -1,11 +1,9 @@
 const money = document.querySelector("#currencies");
 const input = document.querySelector("#money");
 const result = document.querySelector(".counted");
-const btn = document.getElementById("btn");
+const form = document.querySelector(".converter");
 
 const apiUrl = "https://api.nbp.pl/api/exchangerates/rates/a/";
-
-let currencyValue;
 
 const fetchCurrencyData = (selectedCurrency) => {
   const url = `${apiUrl}${selectedCurrency}/`;
@@ -13,8 +11,8 @@ const fetchCurrencyData = (selectedCurrency) => {
     .then((response) => response.json())
     .then((data) => {
       if (data?.rates?.length > 0 && data.rates[0].mid) {
-        currencyValue = data.rates[0].mid;
-        calculate();
+        const currencyValue = data.rates[0].mid;
+        calculate(currencyValue);
       } else {
         alert("Failed to read currency converter");
       }
@@ -22,26 +20,19 @@ const fetchCurrencyData = (selectedCurrency) => {
     .catch((error) => alert(error));
 };
 
-const calculate = () => {
-  const amount = input.value;
+const calculate = (currencyValue) => {
+  const amount = Number(input.value.replace(",", "."));
   const calculatedValue = amount * currencyValue;
-  result.innerHTML = calculatedValue.toFixed(2) + " PLN";
+  result.textContent = calculatedValue.toFixed(2) + " PLN";
 };
 
-btn.addEventListener("click", (event) => {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
   const amount = parseFloat(input.value);
-  if (isNaN(amount) || amount <= 0) {
+  if (isNaN(amount) || amount < 0) {
     alert("Enter a value greater than 0");
     return;
   }
   const selectedCurrency = money.value;
   fetchCurrencyData(selectedCurrency);
-});
-
-input.addEventListener("input", () => {
-  const amount = parseFloat(input.value);
-  if (isNaN(amount) || amount <= 0) {
-    input.value = "";
-  }
 });
