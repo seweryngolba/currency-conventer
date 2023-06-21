@@ -29,7 +29,7 @@ const calculate = (currencyValue) => {
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const amount = parseFloat(input.value);
-  if (isNaN(amount) || amount < 0) {
+  if (isNaN(amount) || amount <= 0) {
     alert("Enter a value greater than 0");
     return;
   }
